@@ -126,11 +126,14 @@ echo "${STR1} ${STR2} ${STR3} ${STR4} ${STR5}" > version.txt
 #
 if [[ ${BLD_DEBUG} == "1" ]] ; then
 	# In debug mode, just pretend to do the commit and push...
-	git commit --dry-run -m "Set Revision Information to ${STR1} ${STR2} ${STR3} ${STR4} at Build ${STR5}"
+	decho "Trying to commit..."
+	git commit -a -m "Set Revision Information to ${STR1} ${STR2} ${STR3} ${STR4} at Build ${STR5}"
+	decho
+	decho "trying to push"
 	git push --dry-run 
 else
 	# Live mode, actually do the deed
-	git commit --dry-run -m "Set Revision Information to ${STR1} ${STR2} ${STR3} ${STR4} at Build ${STR5}"
+	git commit -a --dry-run -m "Set Revision Information to ${STR1} ${STR2} ${STR3} ${STR4} at Build ${STR5}"
 	git push --dry-run 
 fi
 
