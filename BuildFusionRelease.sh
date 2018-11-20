@@ -124,20 +124,11 @@ echo "${STR1} ${STR2} ${STR3} ${STR4} ${STR5}" > version.txt
 # 1d) Update the local repo with the version information and push it to the 
 #		upstream master.
 #
-if [[ ${BLD_DEBUG} == "1" ]] ; then
-	# In debug mode, just pretend to do the commit and push...
-	decho "Trying to commit..."
-	git commit -a -m "Set Revision Information to ${STR1} ${STR2} ${STR3} ${STR4} at Build ${STR5}"
-	decho
-	decho "trying to push"
-	git push --dry-run 
-else
-	# Live mode, actually do the deed
-	git commit -a --dry-run -m "Set Revision Information to ${STR1} ${STR2} ${STR3} ${STR4} at Build ${STR5}"
-	git push --dry-run 
-fi
-
-	
+decho "Committing changes to local repository..."
+git commit -a -m "Set Revision Information to ${STR1} ${STR2} ${STR3} ${STR4} at Build ${STR5}"
+decho
+decho "Pushing changes to upstream Repository"
+git push  
 
 
 
